@@ -36,7 +36,7 @@ public class CokreatConfigProvider extends BaseTestConfig {
 
     }
     /* Method returns the keyValue in properties file based on KeyName Parameter */
-    public String getSunbidConfigPropertyValue(String keyName) {
+    public String getCoKreatConfigPropertyValue(String keyName) {
 
         return cokreatConfigPro.getProperty(keyName);
     }

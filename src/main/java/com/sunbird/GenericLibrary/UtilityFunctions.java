@@ -14,7 +14,6 @@ import java.util.Properties;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -139,7 +138,7 @@ public class UtilityFunctions extends BaseTestConfig {
     }
 
     public static String getExactFilePath(String fileName) {
-        String filepath = System.getProperty("user.dir") + cokreat_config.getSunbidConfigPropertyValue("fileName");
+        String filepath = System.getProperty("user.dir") + cokreat_config.getCoKreatConfigPropertyValue("fileName");
 
         return filepath;
     }
@@ -397,7 +396,10 @@ return value;
         return systemDownloadPath;
     }
 
-
+public static String getCurrentURLAsString()
+{
+    return driver.getCurrentUrl();
+}
 
 
     public static void waitJAv() {
