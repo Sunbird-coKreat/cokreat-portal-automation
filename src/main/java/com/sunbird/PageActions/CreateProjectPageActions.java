@@ -1,0 +1,125 @@
+package com.sunbird.PageActions;
+
+import com.sunbird.GenericLibrary.BaseTestConfig;
+import com.sunbird.GenericLibrary.CokreatConstants;
+import com.sunbird.GenericLibrary.UtilityFunctions;
+import com.sunbird.PageObjects.CreateProjectPage;
+import org.openqa.selenium.support.PageFactory;
+
+
+/* Handle login flow by accepting username and password as parameter */
+public class CreateProjectPageActions extends BaseTestConfig {
+
+
+    public static void clickCreateNewBtn() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.createNewBtn();
+    }
+
+    public static void selectProjectCreationCollectionType() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.selectProjectWithCollectionRadiobtn();
+    }
+
+    public static void clickNextBtnInProjectCreationPopup() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.nextBtnInProjectCreationPopup();
+
+    }
+
+    public static String enteredProjectName() {
+        String projectName = UtilityFunctions.generateRandomName("automation");
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.enterProjectName(projectName);
+        return projectName;
+    }
+
+    public static String enteredProjectDesc() {
+        String projectDesc = UtilityFunctions.generateRandomName("automation");
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.enterProjectDesc(projectDesc);
+        return projectDesc;
+    }
+
+    public static void enterNominationEndDate(String endDate) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.nominationEndDate(endDate);
+    }
+
+    public static void enterNominationShortListingDate(String endDate) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.nominationShortlistingEndDate(endDate);
+    }
+
+    public static void enterContributionEndDate(String endDate) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.contributionEndDate(endDate);
+    }
+
+    public static void enterProjectEndDate(String endDate) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.projectEndDate(endDate);
+    }
+
+    public static void enterRecognitionToContributors(String inputText) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.recognitionToContributors(inputText);
+    }
+
+    public static void clickNextButtonInProjectCreation() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.nextButtonProjectCreation();
+    }
+
+    public static void clickContentTypeDropdown() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.contentTypeDropdown();
+    }
+
+    public static void selectValuesInContentTypeDropdown() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.selectValuesInContentTypeDropdown(9);
+    }
+
+    public static void clickTargetCollectionDropdown(String targetCollectionType) {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+                    createProjectPage.clickTargetCollection();
+        switch (targetCollectionType) {
+            case "Course":
+                createProjectPage.selectCourseInTargetCollection();
+                break;
+            case "Digital Textbook":
+                createProjectPage.selectDigitalTxtBookInTargetCollection();
+                break;
+            case "Question Paper":
+                createProjectPage.selectQuestionPaperInTargetCollection();
+                break;
+            case "Content Playlist":
+                createProjectPage.selectContentPlaylistInTargetCollectionDropdown();
+                break;
+        }
+    }
+
+    public static void selectFirstContentInTargetCollection()
+    {
+           CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+createProjectPage.selectContentInTargetCollection();
+    }
+    public static void clickPublishProject()
+    {
+             CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+createProjectPage.publishProject();
+    }
+    public static void clickYesInPublishProjectPopup()
+    {
+                    CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+createProjectPage.yesBtnInPublishProject();
+    }
+    public static void assertProjectPublishedToastrMsg()
+    {
+      CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+     String actualText=createProjectPage.assertProjectPublishedToastrMsg();
+      UtilityFunctions.stringValueComparision(actualText, CokreatConstants.projectPublishedMsg, "Failed to create publish");
+
+    }
+}

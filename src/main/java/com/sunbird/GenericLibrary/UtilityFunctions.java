@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.github.javafaker.Faker;
+import com.sunbird.PageObjects.CreateProjectPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -406,5 +408,61 @@ public static String getCurrentURLAsString()
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("return document.readyState").equals("complete");
     }
+    public static String setCurrentDate() throws InterruptedException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
+        LocalDate today = LocalDate.now();
+        String formattedDate = today.format(formatter);
+return  formattedDate;
 
+    }
+
+    public static String setFutureDate(int dayCount) throws InterruptedException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
+        LocalDate today = LocalDate.now().plusDays(dayCount);
+        String formattedDate = today.format(formatter);
+
+return  formattedDate;
+    }
+
+    public static void  dynamicElementHandlingForSelectTagnameInProjectCreation() throws InterruptedException {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        Thread.sleep(5000);
+
+        List<WebElement> elements=createProjectPage.getSelectDropdowns();
+
+        System.out.println("element in editor"+elements.size());
+        int  totalCount=elements.size();
+        for(int i=0;i<totalCount;i++)
+        {
+
+            String dropdownXpath="(//select)[";
+            int val=i;
+            String xpathClose="]";
+            String dropdownValueXpath="//following::option[1]";
+            Thread.sleep(2000);
+            createProjectPage.clickSelectDropdown(val);
+            Thread.sleep(2000);
+            int val2=val+1;
+            WebElement value= driver.findElement(By.xpath(dropdownXpath+val2+xpathClose+dropdownValueXpath));
+            UtilityFunctions.waitForElementAndClickable(value);
+            //   driver.findElement(By.xpath(dropdownXpath+val2+xpathClose+dropdownValueXpath)).click();
+            //  int totalCount2=elements.size();
+            //   totalCount=totalCount2;
+
+        }
+        Thread.sleep(2000);
+    }
+
+    public static void findDynamicElementAndClick(String xpathValue) throws InterruptedException {
+      WebElement element= driver.findElement(By.xpath(xpathValue));
+      UtilityFunctions.scrollInToviewUsingJavaScript(element);
+UtilityFunctions.waitForElementAndClickable(element);
+        Listeners.addLogs("clicked on DynamicWebElement");
+
+    }
+    public static String returnProjectCreatedXpath(String projectName)
+    {
+        String projectXpath=CokreatConstants.projectXpath1+projectName+CokreatConstants.projectXpath2;
+          return projectXpath;
+    }
 }
