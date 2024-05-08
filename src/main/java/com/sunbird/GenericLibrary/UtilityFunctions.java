@@ -160,22 +160,6 @@ public class UtilityFunctions extends BaseTestConfig {
     public static void validatIsElementPresent(WebElement element, String ErrorMsg) {
         Assert.assertTrue(element.isDisplayed(), ErrorMsg);
     }
-    public static void validatElementNotPresent(WebElement element, String ErrorMsg) {
-try {
-    boolean status = !element.isDisplayed();
-    System.out.println(status);
-    if (status == true) {
-        Assert.assertTrue(status, "Element is displayed");
-    } else {
-        Assert.assertFalse(status, "Element not displayed");
-    }
-}
-catch (Exception e)
-        {
-
-        }
-    }
-
 
     public static void scrollDownUsingPixelValue() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -465,4 +449,28 @@ UtilityFunctions.waitForElementAndClickable(element);
         String projectXpath=CokreatConstants.projectXpath1+projectName+CokreatConstants.projectXpath2;
           return projectXpath;
     }
+    public static boolean isElementPresent(WebElement locator) {
+        try {
+            waitForVisibilityOfWebElement(locator);
+            if (locator.isDisplayed())
+                System.out.println("Element present on screen ***********" + locator);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Element not present on screen **************" + locator);
+            return false;
+        }
+    }
+
+    public static void validatElementNotPresen(WebElement element)
+    {
+      boolean status=isElementPresent(element);
+        if (status == false) {
+            Assert.assertFalse(status, "Element not displayed");
+        } else {
+//            Assert.assertTrue(status, "Element is displayed");
+//            Assert.fail();
+            Assert.assertFalse(status, "Element is displayed");
+        }
+
+        }
 }

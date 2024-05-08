@@ -40,7 +40,10 @@ public class CreateProjectPageActions extends BaseTestConfig {
         createProjectPage.enterProjectDesc(projectDesc);
         return projectDesc;
     }
-
+    public static void clickFromYourOrganizationOnlyRadioBtn() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.yourOrganizationOnlyRadiobtn();
+    }
     public static void enterNominationEndDate(String endDate) {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.nominationEndDate(endDate);
@@ -121,5 +124,35 @@ createProjectPage.yesBtnInPublishProject();
      String actualText=createProjectPage.assertProjectPublishedToastrMsg();
       UtilityFunctions.stringValueComparision(actualText, CokreatConstants.projectPublishedMsg, "Failed to create publish");
 
+    }
+    public static void assertCourseTabAndClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyCoursesTab();
+    }
+    public static void assertNominationTabAndClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyNominationTab();
+    }
+    public static void assertAssignUserToProjectTabAndClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyAssignUserToProjectTab();
+    }
+    public static void assertContributionDashboardTabAndClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyContributionDashboardTab();
+    }
+    public static void assertReportTabAndClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyReportsTab();
+    }
+    public static void nominationTabNotDisplayed()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyNominationTabNotDisplayed();
     }
 }

@@ -28,6 +28,10 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//label[@for='defaultContributeOrgReview']")
     private WebElement skipTwoLevelReviewDisable;
 
+    @FindBy(how = How.XPATH, using = "//label[@for='type_private']")
+    private WebElement fromYourOrganizationOnlyRadioBtn;
+
+
     // select date
     @FindBy(how = How.XPATH, using = "//input[@formcontrolname='nomination_enddate']")
     private static WebElement nominationEndDate;
@@ -82,6 +86,21 @@ public class CreateProjectPage {
 
     @FindBy(how = How.XPATH, using = "//*[contains(text(),'Your project has been published suucessfully')]")
     private WebElement assertProjectPublished;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Courses')]")
+    private WebElement assertCourseTab;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Nominations ')]")
+    private WebElement assertNominationTab;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Assign users to project ')]")
+    private WebElement assertAssignUserToProject;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Contribution Dashboard')]")
+    private WebElement assertContributionDashboard;
+
+    @FindBy(how = How.XPATH, using = "//a[@class='item active']//following::a[contains(text(),'Reports')]")
+    private WebElement assertReportTab;
 
 
     @FindBy(how = How.XPATH, using = "//label[contains(text(),'Skip two - level Review')]")
@@ -143,7 +162,10 @@ public class CreateProjectPage {
         Listeners.addLogs("Clicked on skipTwoLevelReviewDisable btn");
 
     }
-
+    public void yourOrganizationOnlyRadiobtn() {
+        UtilityFunctions.waitForElementAndClickable(fromYourOrganizationOnlyRadioBtn);
+        Listeners.addLogs("clicked fromYourOrganizationOnlyRadioBtn");
+    }
     public void nominationEndDate(String endDate) {
         UtilityFunctions.waitToBeClickableAndSendKeys(nominationEndDate,endDate);
         Listeners.addLogs("entered nominationEndDate");
@@ -233,5 +255,34 @@ public class CreateProjectPage {
         Listeners.addLogs("assertProjectPublished validated");
         UtilityFunctions.waitForElementToDisappear(assertProjectPublished);
         return actualText;
+    }
+
+    public void verifyCoursesTab() {
+        UtilityFunctions.waitForElementAndClickable(assertCourseTab);
+        UtilityFunctions.validatIsElementPresent(assertCourseTab,"CourseTab Not displayed");
+        Listeners.addLogs("assertCourseTabp");
+    }
+    public void verifyNominationTab() {
+        UtilityFunctions.waitForElementAndClickable(assertNominationTab);
+        UtilityFunctions.validatIsElementPresent(assertNominationTab,"NominationTab Not displayed");
+        Listeners.addLogs("assertNominationTab");
+    }
+    public void verifyAssignUserToProjectTab() {
+        UtilityFunctions.waitForElementAndClickable(assertAssignUserToProject);
+        UtilityFunctions.validatIsElementPresent(assertAssignUserToProject,"AssignUserToProjectTab Not displayed");
+        Listeners.addLogs("assertAssignUserToProject");
+    }
+    public void verifyContributionDashboardTab() {
+        UtilityFunctions.waitForElementAndClickable(assertContributionDashboard);
+        UtilityFunctions.validatIsElementPresent(assertContributionDashboard,"ContributionDashboardTab Not displayed");
+        Listeners.addLogs("assertContributionDashboard");
+    }
+    public void verifyReportsTab() {
+        UtilityFunctions.waitForElementAndClickable(assertReportTab);
+        Listeners.addLogs("assertReportTab");
+    }
+    public void verifyNominationTabNotDisplayed() {
+        UtilityFunctions.validatElementNotPresen(assertNominationTab);
+        Listeners.addLogs("assertNominationTab Not displayed");
     }
 }
