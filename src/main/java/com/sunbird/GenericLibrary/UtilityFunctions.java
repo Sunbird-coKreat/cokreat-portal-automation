@@ -438,11 +438,11 @@ return  formattedDate;
     }
 
     public static void findDynamicElementAndClick(String xpathValue) throws InterruptedException {
+    UtilityFunctions.threadSleep(8000);
       WebElement element= driver.findElement(By.xpath(xpathValue));
       UtilityFunctions.scrollInToviewUsingJavaScript(element);
 UtilityFunctions.waitForElementAndClickable(element);
         Listeners.addLogs("clicked on DynamicWebElement");
-
     }
     public static String returnProjectCreatedXpath(String projectName)
     {

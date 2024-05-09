@@ -103,6 +103,21 @@ public class CreateProjectPageActions extends BaseTestConfig {
         }
     }
 
+    public static void clickFrameworkTypeDropdown()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.frameworkTypeDropdown();
+    }
+    public static void selectTPD()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.selectTPD();
+    }
+    public static void clickOnYesInFrameworkChangePopup()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.yesbtnInFrameworkChangePopup();
+    }
     public static void selectFirstContentInTargetCollection()
     {
            CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);

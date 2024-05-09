@@ -78,6 +78,21 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "(//td[@class='collapsing'])[1]")
     private WebElement selectFirstContentInTargetCollection;
 
+//    @FindBy(how = How.XPATH, using = "//td[@class='collapsing']")
+//    private WebElement selectFirstContentInTargetCollection;
+
+//    @FindBy(how = How.XPATH, using = "//td[@class='collapsing']//following::input[@type='checkbox']")
+//    private WebElement selectFirstContentInTargetCollection;
+
+
+    @FindBy(how = How.XPATH, using = "//label[contains(text(),'Framework Type')]//following::sui-select")
+    private WebElement frameWorkTypeDropdown;
+
+    @FindBy(how = How.XPATH, using = "//label[contains(text(),'Framework Type')]//following::span[contains(text(),'Continuous Professional Development')]")
+    private WebElement tpdFrameworkValue;
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Yes')]")
+    private WebElement yesInChangeFrameworkpopup;
+
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Publish Project')]")
     private WebElement publishProject;
 
@@ -237,7 +252,7 @@ public class CreateProjectPage {
     }
 
     public void selectContentInTargetCollection() {
-        UtilityFunctions.waitForElementAndClickable(selectFirstContentInTargetCollection);
+     UtilityFunctions.waitForElementAndClickable(selectFirstContentInTargetCollection);
         Listeners.addLogs("Clicked on selectFirstContentInTargetCollection");
     }
     public void publishProject() {
@@ -284,5 +299,17 @@ public class CreateProjectPage {
     public void verifyNominationTabNotDisplayed() {
         UtilityFunctions.validatElementNotPresen(assertNominationTab);
         Listeners.addLogs("assertNominationTab Not displayed");
+    }
+    public void frameworkTypeDropdown() {
+        UtilityFunctions.waitForElementAndClickable(frameWorkTypeDropdown);
+        Listeners.addLogs("clicked on frameWorkTypeDropdown");
+    }
+    public void selectTPD() {
+        UtilityFunctions.waitForElementAndClickable(tpdFrameworkValue);
+        Listeners.addLogs("selected tpdFrameworkValue");
+    }
+    public void yesbtnInFrameworkChangePopup() {
+        UtilityFunctions.waitForElementAndClickable(yesInChangeFrameworkpopup);
+        Listeners.addLogs("clicked on yesInChangeFrameworkpopup");
     }
 }
