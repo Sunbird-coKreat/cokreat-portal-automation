@@ -8,8 +8,9 @@
 		thread-count="5"
 		name="Test">
 	<classes>
-
+<!---->
 		<class name="sanity.FirstStep4" />
+
 	</classes>
 </test> <!-- Test -->
 </suite> <!-- Su ite -->

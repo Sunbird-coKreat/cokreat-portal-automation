@@ -44,6 +44,10 @@ public class CreateProjectPageActions extends BaseTestConfig {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.yourOrganizationOnlyRadiobtn();
     }
+    public static void clickFromSelectedSetOfContributorsRadioBtn() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.selectedSetOfContributors();
+    }
     public static void enterNominationEndDate(String endDate) {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.nominationEndDate(endDate);
@@ -84,9 +88,10 @@ public class CreateProjectPageActions extends BaseTestConfig {
         createProjectPage.selectValuesInContentTypeDropdown(9);
     }
 
-    public static void clickTargetCollectionDropdown(String targetCollectionType) {
+    public static void clickTargetCollectionDropdown(String targetCollectionType) throws InterruptedException {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
                     createProjectPage.clickTargetCollection();
+                    UtilityFunctions.threadSleep(2000);
         switch (targetCollectionType) {
             case "Course":
                 createProjectPage.selectCourseInTargetCollection();
@@ -170,4 +175,5 @@ createProjectPage.yesBtnInPublishProject();
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.verifyNominationTabNotDisplayed();
     }
+
 }

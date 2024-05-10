@@ -31,6 +31,8 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//label[@for='type_private']")
     private WebElement fromYourOrganizationOnlyRadioBtn;
 
+    @FindBy(how = How.XPATH, using = "//label[@for='type_restricted']")
+    private WebElement fromSelectedSetofContributorsRadioBtn;
 
     // select date
     @FindBy(how = How.XPATH, using = "//input[@formcontrolname='nomination_enddate']")
@@ -122,23 +124,6 @@ public class CreateProjectPage {
     private WebElement skipReviewEnable;
 
 
-    @FindBy(how = How.XPATH, using = "//span[contains(text(),'English')]//following::div[@class='sb-avatar__img']")
-    private WebElement userProfileIcon;
-
-    @FindBy(how = How.XPATH, using = "//a[text()=' Login ']")
-    private WebElement loginLink;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='username']")
-    private WebElement userName;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='password']")
-    private WebElement password;
-
-    @FindBy(how = How.XPATH, using = "//button[@id='login']")
-    private WebElement login;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='title mt-4']")
-    private WebElement checkAssert;
 
     public void createNewBtn() {
 
@@ -176,6 +161,10 @@ public class CreateProjectPage {
         UtilityFunctions.waitToBeClickableAndClick(skipTwoLevelReviewDisable);
         Listeners.addLogs("Clicked on skipTwoLevelReviewDisable btn");
 
+    }
+    public void selectedSetOfContributors() {
+        UtilityFunctions.waitForElementAndClickable(fromSelectedSetofContributorsRadioBtn);
+        Listeners.addLogs("clicked on fromSelectedSetofContributorsRadioBtn");
     }
     public void yourOrganizationOnlyRadiobtn() {
         UtilityFunctions.waitForElementAndClickable(fromYourOrganizationOnlyRadioBtn);
@@ -312,4 +301,6 @@ public class CreateProjectPage {
         UtilityFunctions.waitForElementAndClickable(yesInChangeFrameworkpopup);
         Listeners.addLogs("clicked on yesInChangeFrameworkpopup");
     }
+
+
 }

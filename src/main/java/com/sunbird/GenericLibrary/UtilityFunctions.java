@@ -68,16 +68,19 @@ public class UtilityFunctions extends BaseTestConfig {
         fluenWait(element, waitTime);
         element.click();
     }
+
     public static void waitForElementIsVisible(WebElement element) {
         int waitTime = 30;
         fluenWait(element, waitTime);
 
 
     }
+
     public static void waitForElementToDisappear(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
+
     /* This method will click on the UI screen using given dimension value */
     public static void MoveByOffSet(int a, int b) {
 
@@ -183,8 +186,8 @@ public class UtilityFunctions extends BaseTestConfig {
 
     public static void pressEnterKeyOnWebElement(WebElement element) {
 
-       // element.sendKeys(Keys.ENTER);
-       element.sendKeys(Keys.RETURN);
+        // element.sendKeys(Keys.ENTER);
+        element.sendKeys(Keys.RETURN);
     }
 
     public static String getProperyFilePath() throws IOException {
@@ -217,16 +220,15 @@ public class UtilityFunctions extends BaseTestConfig {
         return finalXpath;
     }
 
-    public static String generateXpathUsingAttributeNameAndKeynameValue(String attributeName,String keynameValue)
-    {
-        String finalXpath = "//*[@"+attributeName+"='"+keynameValue+"']";
-             return finalXpath;
+    public static String generateXpathUsingAttributeNameAndKeynameValue(String attributeName, String keynameValue) {
+        String finalXpath = "//*[@" + attributeName + "='" + keynameValue + "']";
+        return finalXpath;
     }
 
     public static void switchFrameUsingName() throws InterruptedException {
 
         WebElement iframe = driver.findElement(By.tagName("iframe"));
-            driver.switchTo().frame(iframe);
+        driver.switchTo().frame(iframe);
     }
 
     public static void waitForElementToBeClickable(WebElement element) {
@@ -234,54 +236,52 @@ public class UtilityFunctions extends BaseTestConfig {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public static void waitForElementUsingForLoopAndAssert(WebElement element,int maxAttempt)
-    {
-        for(int i=0;i<maxAttempt;i++) {
-            try {
-               validatIsElementPresent(element, "element is not Displayed");
-                break;
-            } catch (Exception e)
-            {
-
-            }
-    }
-}
-    public static void waitForElementUsingForLoop(WebElement element,int maxAttempt)
-    {
-        for(int i=0;i<maxAttempt;i++) {
+    public static void waitForElementUsingForLoopAndAssert(WebElement element, int maxAttempt) {
+        for (int i = 0; i < maxAttempt; i++) {
             try {
                 validatIsElementPresent(element, "element is not Displayed");
                 break;
-            } catch (StaleElementReferenceException e)
-            {
+            } catch (Exception e) {
 
-                 }
+            }
         }
     }
+
+    public static void waitForElementUsingForLoop(WebElement element, int maxAttempt) {
+        for (int i = 0; i < maxAttempt; i++) {
+            try {
+                validatIsElementPresent(element, "element is not Displayed");
+                break;
+            } catch (StaleElementReferenceException e) {
+
+            }
+        }
+    }
+
     public static void switchToFrameUsingXpath(WebElement element) throws InterruptedException {
-       // WebElement iframe = driver.findElement(By.xpath(element));
+        // WebElement iframe = driver.findElement(By.xpath(element));
         driver.switchTo().frame(element);
     }
+
     public static void switchFrameUsingXpath() throws InterruptedException {
         WebElement iframe = driver.findElement(By.xpath("//iframe[@class='iziModal-iframe']"));
         driver.switchTo().frame(iframe);
     }
 
-    public static String getTodayDate(String pattern)
-    {
+    public static String getTodayDate(String pattern) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime now = LocalDateTime.now();
-        String todayDate=dtf.format(now);
-        return  todayDate;
+        String todayDate = dtf.format(now);
+        return todayDate;
     }
-    public static String getFutureDate(int dayCount)
-    {
+
+    public static String getFutureDate(int dayCount) {
         LocalDate today = LocalDate.now();
         String futureDate = (today.plusDays(dayCount)).format(DateTimeFormatter.ISO_DATE);
-  return  futureDate;
+        return futureDate;
     }
-    public static void getDataInMonth(int dayCount)
-    {
+
+    public static void getDataInMonth(int dayCount) {
         // Get an instance of LocalTime
         // from date
         LocalDate currentDate = LocalDate.parse("date");
@@ -301,10 +301,9 @@ public class UtilityFunctions extends BaseTestConfig {
         System.out.println("Year: " + year);
     }
 
-    public static int extractNumberFromString(String data)
-    {
+    public static int extractNumberFromString(String data) {
         int value = Integer.parseInt(data.replaceAll("[^0-9]", ""));
-return value;
+        return value;
     }
 
     public static void numberValueComparision(int actual, int expected, String Msg) {
@@ -312,17 +311,16 @@ return value;
 
     }
 
-    public static void backButtonInBrowser()
-    {
+    public static void backButtonInBrowser() {
 
         driver.navigate().back();
     }
-    public static void acceptAlert()
-    {
+
+    public static void acceptAlert() {
         driver.switchTo().alert().accept();
     }
-    public static void switchToDefaultContentFrame()
-    {
+
+    public static void switchToDefaultContentFrame() {
 
         driver.switchTo().defaultContent();
     }
@@ -335,7 +333,7 @@ return value;
 
 
     public static void refreshPage() {
-     driver.navigate().refresh();
+        driver.navigate().refresh();
     }
 
     public static void elementToBeSelected(WebElement element) {
@@ -343,28 +341,26 @@ return value;
         wait.until(ExpectedConditions.elementToBeSelected(element));
 
     }
+
     public static void mouseHoverOnElement(WebElement element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
         actions.click().build().perform();
-            }
+    }
 
-            public static void threadSleep(int seconds) throws InterruptedException {
-                Thread.sleep(seconds);
-            }
-    public static File getLatestDownloadedFile(String directoryFilePath)
-    {
+    public static void threadSleep(int seconds) throws InterruptedException {
+        Thread.sleep(seconds);
+    }
+
+    public static File getLatestDownloadedFile(String directoryFilePath) {
         File directory = new File(directoryFilePath);
         File[] files = directory.listFiles(File::isFile);
         long lastModifiedTime = Long.MIN_VALUE;
         File chosenFile = null;
 
-        if (files != null)
-        {
-            for (File file : files)
-            {
-                if (file.lastModified() > lastModifiedTime)
-                {
+        if (files != null) {
+            for (File file : files) {
+                if (file.lastModified() > lastModifiedTime) {
                     chosenFile = file;
                     lastModifiedTime = file.lastModified();
                 }
@@ -374,29 +370,28 @@ return value;
         return chosenFile;
     }
 
-    public static String getSystemDownloadPath()
-    {
+    public static String getSystemDownloadPath() {
         String home = System.getProperty("user.home");
-        File downloadPath = new File(home+"/Downloads/");
-        String systemDownloadPath=downloadPath.toString();
+        File downloadPath = new File(home + "/Downloads/");
+        String systemDownloadPath = downloadPath.toString();
         return systemDownloadPath;
     }
 
-public static String getCurrentURLAsString()
-{
-    return driver.getCurrentUrl();
-}
+    public static String getCurrentURLAsString() {
+        return driver.getCurrentUrl();
+    }
 
 
     public static void waitJAv() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("return document.readyState").equals("complete");
     }
+
     public static String setCurrentDate() throws InterruptedException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
         LocalDate today = LocalDate.now();
         String formattedDate = today.format(formatter);
-return  formattedDate;
+        return formattedDate;
 
     }
 
@@ -405,29 +400,28 @@ return  formattedDate;
         LocalDate today = LocalDate.now().plusDays(dayCount);
         String formattedDate = today.format(formatter);
 
-return  formattedDate;
+        return formattedDate;
     }
 
-    public static void  dynamicElementHandlingForSelectTagnameInProjectCreation() throws InterruptedException {
+    public static void dynamicElementHandlingForSelectTagnameInProjectCreation() throws InterruptedException {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         Thread.sleep(5000);
 
-        List<WebElement> elements=createProjectPage.getSelectDropdowns();
+        List<WebElement> elements = createProjectPage.getSelectDropdowns();
 
-        System.out.println("element in editor"+elements.size());
-        int  totalCount=elements.size();
-        for(int i=0;i<totalCount;i++)
-        {
+        System.out.println("element in editor" + elements.size());
+        int totalCount = elements.size();
+        for (int i = 0; i < totalCount; i++) {
 
-            String dropdownXpath="(//select)[";
-            int val=i;
-            String xpathClose="]";
-            String dropdownValueXpath="//following::option[1]";
+            String dropdownXpath = "(//select)[";
+            int val = i;
+            String xpathClose = "]";
+            String dropdownValueXpath = "//following::option[1]";
             Thread.sleep(2000);
             createProjectPage.clickSelectDropdown(val);
             Thread.sleep(2000);
-            int val2=val+1;
-            WebElement value= driver.findElement(By.xpath(dropdownXpath+val2+xpathClose+dropdownValueXpath));
+            int val2 = val + 1;
+            WebElement value = driver.findElement(By.xpath(dropdownXpath + val2 + xpathClose + dropdownValueXpath));
             UtilityFunctions.waitForElementAndClickable(value);
             //   driver.findElement(By.xpath(dropdownXpath+val2+xpathClose+dropdownValueXpath)).click();
             //  int totalCount2=elements.size();
@@ -438,16 +432,24 @@ return  formattedDate;
     }
 
     public static void findDynamicElementAndClick(String xpathValue) throws InterruptedException {
-    UtilityFunctions.threadSleep(8000);
-      WebElement element= driver.findElement(By.xpath(xpathValue));
-      UtilityFunctions.scrollInToviewUsingJavaScript(element);
-UtilityFunctions.waitForElementAndClickable(element);
+        UtilityFunctions.threadSleep(8000);
+        WebElement element = driver.findElement(By.xpath(xpathValue));
+        UtilityFunctions.scrollInToviewUsingJavaScript(element);
+        UtilityFunctions.waitForElementAndClickable(element);
         Listeners.addLogs("clicked on DynamicWebElement");
     }
-    public static String returnProjectCreatedXpath(String projectName)
-    {
-        String projectXpath=CokreatConstants.projectXpath1+projectName+CokreatConstants.projectXpath2;
-          return projectXpath;
+
+    public static String returnProjectCreatedXpath(String projectName) {
+        String projectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.projectXpath2;
+        return projectXpath;
+    }
+    public static void assertWebElementAsString(String xpathValue) throws InterruptedException {
+        {
+            UtilityFunctions.threadSleep(8000);
+            WebElement element = driver.findElement(By.xpath(xpathValue));
+            UtilityFunctions.validatIsElementPresent(element,"Element not disalyed");
+            Listeners.addLogs("Element verified");
+        }
     }
     public static boolean isElementPresent(WebElement locator) {
         try {
@@ -461,9 +463,8 @@ UtilityFunctions.waitForElementAndClickable(element);
         }
     }
 
-    public static void validatElementNotPresen(WebElement element)
-    {
-      boolean status=isElementPresent(element);
+    public static void validatElementNotPresen(WebElement element) {
+        boolean status = isElementPresent(element);
         if (status == false) {
             Assert.assertFalse(status, "Element not displayed");
         } else {
@@ -472,5 +473,6 @@ UtilityFunctions.waitForElementAndClickable(element);
             Assert.assertFalse(status, "Element is displayed");
         }
 
-        }
+    }
+
 }
