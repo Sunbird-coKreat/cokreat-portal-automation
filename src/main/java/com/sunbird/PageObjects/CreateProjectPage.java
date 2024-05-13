@@ -118,11 +118,8 @@ public class CreateProjectPage {
 
     @FindBy(how = How.XPATH, using = "//a[@class='item active']//following::a[contains(text(),'Reports')]")
     private WebElement assertReportTab;
-
-
     @FindBy(how = How.XPATH, using = "//label[contains(text(),'Skip two - level Review')]")
     private WebElement skipReviewEnable;
-
 
 
     public void createNewBtn() {

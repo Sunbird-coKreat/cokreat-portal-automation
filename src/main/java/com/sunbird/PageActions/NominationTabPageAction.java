@@ -18,5 +18,11 @@ public class NominationTabPageAction extends BaseTestConfig {
 
     }
 
+    public static void assertAllLabelDetailsInNominationTab()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+nominationTab.verifyAllLabelsInNomindationTab();
+    }
+
 }
 	
