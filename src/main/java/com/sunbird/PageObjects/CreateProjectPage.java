@@ -98,11 +98,18 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Publish Project')]")
     private WebElement publishProject;
 
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Save as Draft')]")
+    private WebElement saveAsDraft;
+
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Yes')]")
     private WebElement yesInPublishPopup;
 
     @FindBy(how = How.XPATH, using = "//*[contains(text(),'Your project has been published suucessfully')]")
     private WebElement assertProjectPublished;
+
+    @FindBy(how = How.XPATH, using = "//*[contains(text(),'Your project has been saved as draft successfully!')]")
+    private WebElement assertProjectSavedAsDraft;
 
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Courses')]")
     private WebElement assertCourseTab;
@@ -120,6 +127,13 @@ public class CreateProjectPage {
     private WebElement assertReportTab;
     @FindBy(how = How.XPATH, using = "//label[contains(text(),'Skip two - level Review')]")
     private WebElement skipReviewEnable;
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Yes')]")
+    private WebElement yesBtnInDeleteProjectPopup;
+
+    @FindBy(how = How.XPATH, using = "//strong[contains(text(),'The project has been deleted successfully.')]")
+    private WebElement verifyDeleteProjectToastrMsg;
+
 
 
     public void createNewBtn() {
@@ -142,7 +156,9 @@ public class CreateProjectPage {
     }
 
    public void enterProjectName(String projectName) {
-
+        UtilityFunctions.waitForElementToBeClickable(enterProjectName);
+        enterProjectName.click();
+        enterProjectName.clear();
         UtilityFunctions.waitToBeClickableAndSendKeys(enterProjectName, projectName);
         Listeners.addLogs("Entered projectName");
 
@@ -245,6 +261,10 @@ public class CreateProjectPage {
         UtilityFunctions.waitForElementAndClickable(publishProject);
         Listeners.addLogs("Clicked on publishProject");
     }
+    public void saveAsDraft() {
+        UtilityFunctions.waitForElementAndClickable(saveAsDraft);
+        Listeners.addLogs("Clicked on saveAsDraft");
+    }
     public void yesBtnInPublishProject() {
         UtilityFunctions.waitForElementAndClickable(yesInPublishPopup);
         Listeners.addLogs("Clicked on yesBtnInPublishProject");
@@ -257,7 +277,13 @@ public class CreateProjectPage {
         UtilityFunctions.waitForElementToDisappear(assertProjectPublished);
         return actualText;
     }
-
+    public String verifyProjectSavedAsDraftToastrMsg() {
+        UtilityFunctions.waitForVisibilityOfWebElement(assertProjectSavedAsDraft);
+        String actualText=UtilityFunctions.getTextFromElement(assertProjectSavedAsDraft);
+        Listeners.addLogs("assertProjectSavedAsDraft validated");
+        UtilityFunctions.waitForElementToDisappear(assertProjectSavedAsDraft);
+        return actualText;
+    }
     public void verifyCoursesTab() {
         UtilityFunctions.waitForElementAndClickable(assertCourseTab);
         UtilityFunctions.validatIsElementPresent(assertCourseTab,"CourseTab Not displayed");
@@ -298,6 +324,14 @@ public class CreateProjectPage {
         UtilityFunctions.waitForElementAndClickable(yesInChangeFrameworkpopup);
         Listeners.addLogs("clicked on yesInChangeFrameworkpopup");
     }
-
+    public void yesBtnInDeletePopup() {
+        UtilityFunctions.waitForElementAndClickable(yesBtnInDeleteProjectPopup);
+        Listeners.addLogs("clicked on yesBtnInDeleteProjectPopup");
+    }
+    public void verifyDeleteToastrMsg() {
+        UtilityFunctions.waitForVisibilityOfWebElement(verifyDeleteProjectToastrMsg);
+        UtilityFunctions.validatIsElementPresent(verifyDeleteProjectToastrMsg,"DeleteProject failed");
+        Listeners.addLogs("verifyDeleteProjectToastrMsg");
+    }
 
 }

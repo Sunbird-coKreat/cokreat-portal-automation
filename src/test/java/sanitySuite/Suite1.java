@@ -312,4 +312,78 @@ public class Suite1 extends BaseTestConfig {
         UtilityFunctions.scrollDownUsingPixelValue();
         NominationTabPageAction.assertAllLabelDetailsInNominationTab();
     }
+
+    @Test(description = "User should be able to create Draft Project")
+    public void UserAbleToCreateDraftProject() throws Exception {
+
+        String currentURL=UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL+ cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"),cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName= CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Digital Textbook");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickSaveAsDraft();
+        CreateProjectPageActions.assertProjectSavedAsDraftToastrMsg();
+        String assertDeleteProjectXpath=UtilityFunctions.returnDeleteProjectCreatedXpath(projectName);
+        UtilityFunctions.assertWebElementAsString(assertDeleteProjectXpath);
+        String assertDraftStatus=UtilityFunctions.returnDraftStatusCreatedProjectXpath(projectName);
+        UtilityFunctions.assertWebElementAsString(assertDraftStatus);
+        String draftProjectXpath=UtilityFunctions.returnEditDraftProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(draftProjectXpath);
+    }
+
+    @Test(description = "User should be able to edit and delete Draft Project")
+    public void UserAbleToEditDraftAndDeleteDraftProject() throws Exception {
+
+        String currentURL=UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL+ cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"),cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName= CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Digital Textbook");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickSaveAsDraft();
+        CreateProjectPageActions.assertProjectSavedAsDraftToastrMsg();
+        String draftProjectXpath=UtilityFunctions.returnEditDraftProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(draftProjectXpath);
+        String editProjectName= CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.clickSaveAsDraft();
+        CreateProjectPageActions.assertProjectSavedAsDraftToastrMsg();
+        String deleteProjectXpath=UtilityFunctions.returnDeleteProjectCreatedXpath(editProjectName);
+        UtilityFunctions.assertWebElementAsString(deleteProjectXpath);
+        UtilityFunctions.findDynamicElementAndClick(deleteProjectXpath);
+        CreateProjectPageActions.clickOnYesDeleteProjectPopup();
+        CreateProjectPageActions.assertDeleteProjectTostrMsg();
+        UtilityFunctions.assertWebElementAsStringAndShouldNotDisplay(deleteProjectXpath);
+
+    }
 }

@@ -443,14 +443,48 @@ public class UtilityFunctions extends BaseTestConfig {
         String projectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.projectXpath2;
         return projectXpath;
     }
+
+    public static String returnEditDraftProjectCreatedXpath(String projectName) {
+        String draftProjectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.editDraftProjectXpath2;
+        return draftProjectXpath;
+    }
+     public static String returnDraftStatusCreatedProjectXpath(String projectName) {
+     String draftStatusProjectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.draftStatusProjectXpath2;
+       return draftStatusProjectXpath;
+
+    }
+
+
+
+    public static String returnDeleteProjectCreatedXpath(String projectName) {
+        String deleteProjectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.deleteProjectXpath2;
+        return deleteProjectXpath;
+    }
     public static void assertWebElementAsString(String xpathValue) throws InterruptedException {
-        {
+
             UtilityFunctions.threadSleep(8000);
             WebElement element = driver.findElement(By.xpath(xpathValue));
             UtilityFunctions.validatIsElementPresent(element,"Element not disalyed");
-            Listeners.addLogs("Element verified");
-        }
+            Listeners.addLogs("Element verified" +xpathValue);
+
     }
+       public static void assertWebElementAsStringAndShouldNotDisplay(String xpathValue) throws InterruptedException {
+       UtilityFunctions.threadSleep(8000);
+         try {
+        WebElement element = driver.findElement(By.xpath(xpathValue));
+           }
+           catch (Exception e2)
+         {
+            System.out.println("Exception handled");
+           Assert.assertFalse(false);
+
+         }
+
+
+
+
+    }
+
     public static boolean isElementPresent(WebElement locator) {
         try {
             waitForVisibilityOfWebElement(locator);

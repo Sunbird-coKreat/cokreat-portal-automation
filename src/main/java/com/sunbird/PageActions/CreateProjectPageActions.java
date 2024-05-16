@@ -30,7 +30,7 @@ public class CreateProjectPageActions extends BaseTestConfig {
     public static String enteredProjectName() {
         String projectName = UtilityFunctions.generateRandomName("automation");
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
-        createProjectPage.enterProjectName(projectName);
+              createProjectPage.enterProjectName(projectName);
         return projectName;
     }
 
@@ -133,6 +133,12 @@ createProjectPage.selectContentInTargetCollection();
              CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
 createProjectPage.publishProject();
     }
+
+    public static void clickSaveAsDraft()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.saveAsDraft();
+    }
     public static void clickYesInPublishProjectPopup()
     {
                     CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
@@ -175,5 +181,21 @@ createProjectPage.yesBtnInPublishProject();
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.verifyNominationTabNotDisplayed();
     }
+    public static void assertProjectSavedAsDraftToastrMsg()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        String actualText=createProjectPage.verifyProjectSavedAsDraftToastrMsg();
+        UtilityFunctions.stringValueComparision(actualText, CokreatConstants.projectSavedAsDraftMsg, "Failed to save project as draf");
 
+    }
+    public static void clickOnYesDeleteProjectPopup()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.yesBtnInDeletePopup();
+    }
+    public static void assertDeleteProjectTostrMsg()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyDeleteToastrMsg();
+    }
 }

@@ -1,6 +1,7 @@
 package sanity;
 
 import com.sunbird.GenericLibrary.BaseTestConfig;
+import com.sunbird.GenericLibrary.Listeners;
 import com.sunbird.GenericLibrary.UtilityFunctions;
 import com.sunbird.PageActions.*;
 import org.testng.annotations.Test;
@@ -282,8 +283,8 @@ UtilityFunctions.assertWebElementAsString(approvedStatus);
 
     }*/
 
-    @Test(description = "Verify all the details in Nomination Tab")
-    public void VerifyLabelsInNominationTab() throws Exception {
+    @Test(description = "User should be able to edit and delete Draft Project")
+    public void UserAbleToEditDraftAndDeleteDraftProject() throws Exception {
 
         String currentURL=UtilityFunctions.getCurrentURLAsString();
         driver.get(currentURL+ cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
@@ -306,13 +307,19 @@ UtilityFunctions.assertWebElementAsString(approvedStatus);
         UtilityFunctions.scrollDownUsingPixelValue();
         UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
         CreateProjectPageActions.selectFirstContentInTargetCollection();
-        CreateProjectPageActions.clickPublishProject();
-        CreateProjectPageActions.clickYesInPublishProjectPopup();
-        CreateProjectPageActions.assertProjectPublishedToastrMsg();
-        String projectXpath=UtilityFunctions.returnProjectCreatedXpath(projectName);
-        UtilityFunctions.findDynamicElementAndClick(projectXpath);
-        CreateProjectPageActions.assertNominationTabAndClick();
-        UtilityFunctions.scrollDownUsingPixelValue();
-   NominationTabPageAction.assertAllLabelDetailsInNominationTab();
+        CreateProjectPageActions.clickSaveAsDraft();
+        CreateProjectPageActions.assertProjectSavedAsDraftToastrMsg();
+        String draftProjectXpath=UtilityFunctions.returnEditDraftProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(draftProjectXpath);
+        String editProjectName= CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.clickSaveAsDraft();
+        CreateProjectPageActions.assertProjectSavedAsDraftToastrMsg();
+        String deleteProjectXpath=UtilityFunctions.returnDeleteProjectCreatedXpath(editProjectName);
+        UtilityFunctions.assertWebElementAsString(deleteProjectXpath);
+        UtilityFunctions.findDynamicElementAndClick(deleteProjectXpath);
+CreateProjectPageActions.clickOnYesDeleteProjectPopup();
+CreateProjectPageActions.assertDeleteProjectTostrMsg();
+UtilityFunctions.assertWebElementAsStringAndShouldNotDisplay(deleteProjectXpath);
+
+        }
     }
-}
