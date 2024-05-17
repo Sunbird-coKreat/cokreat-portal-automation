@@ -198,4 +198,14 @@ createProjectPage.yesBtnInPublishProject();
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.verifyDeleteToastrMsg();
     }
+    public static void assertAndClickAllProjects()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyAllProjects();
+    }
+    public static void assertAndClickMyProjects()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyMyProjects();
+    }
 }

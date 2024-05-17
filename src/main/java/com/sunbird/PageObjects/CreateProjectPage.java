@@ -134,7 +134,11 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//strong[contains(text(),'The project has been deleted successfully.')]")
     private WebElement verifyDeleteProjectToastrMsg;
 
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'All Projects')]")
+    private WebElement verifyAllProjects;
 
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'My Projects')]")
+    private WebElement verifyMyProjects;
 
     public void createNewBtn() {
 
@@ -333,5 +337,18 @@ public class CreateProjectPage {
         UtilityFunctions.validatIsElementPresent(verifyDeleteProjectToastrMsg,"DeleteProject failed");
         Listeners.addLogs("verifyDeleteProjectToastrMsg");
     }
+    public void verifyAllProjects() {
 
+        UtilityFunctions.waitToBeClickableAndClick(verifyAllProjects);
+        Listeners.addLogs("Clicked on verifyAllProjects");
+        UtilityFunctions.validatIsElementPresent(verifyAllProjects,"AllProjects Not displayed");
+
+    }
+    public void verifyMyProjects() {
+
+        UtilityFunctions.waitToBeClickableAndClick(verifyMyProjects);
+        Listeners.addLogs("Clicked on verifyMyProjects");
+        UtilityFunctions.validatIsElementPresent(verifyMyProjects,"verifyMyProjects Not displayed");
+
+    }
 }
