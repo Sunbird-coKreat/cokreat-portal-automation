@@ -322,18 +322,34 @@ CreateProjectPageActions.assertDeleteProjectTostrMsg();
 UtilityFunctions.assertWebElementAsStringAndShouldNotDisplay(deleteProjectXpath);
 
         }*/
-
-    @Test(description = "User should be able to register as an individual contributor.")
-    public void UserAbleToRegisterAsIndividualContributor() throws Exception {
+    @Test(description = "Verify contribution dashboard is displayed for Sourcing org Admin")
+    public void VerifyContributionDashboardDisplayedForSourcingOrgAdmind() throws Exception {
 
         String currentURL = UtilityFunctions.getCurrentURLAsString();
-        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
-        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("IndividualContributorNewUser"), cokreat_config.getCoKreatConfigPropertyValue("IndividualContributorNewUsrPwd"));
-EnrollAsContributorPopupPageAction.clickEnrollAsindividualContributor();
-EnrollAsContributorPopupPageAction.clickTermsAndConditionCheckBox();
-EnrollAsContributorPopupPageAction.clickSubmit();
-CreateProjectPageActions.assertAndClickAllProjects();
-CreateProjectPageActions.assertAndClickMyProjects();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.clickIndividualContentNotTargetToAnyCollection();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+                CreateProjectPageActions.clickFromYourOrganizationOnlyRadioBtn();
+         CreateProjectPageActions.clickSkipTwoLevelReviewClick();
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+           CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        String projectXpath = UtilityFunctions.returnIndividualContentProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        CreateProjectPageActions.assertContributionDashboardTabAndClick();
 
     }
 

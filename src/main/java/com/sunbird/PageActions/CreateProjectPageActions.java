@@ -208,4 +208,14 @@ createProjectPage.yesBtnInPublishProject();
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.verifyMyProjects();
     }
+    public static void clickIndividualContentNotTargetToAnyCollection()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.selectGetIndividualContentNotTargetedToAnyCollectionRadioBtn();
+    }
+    public static void clickSkipTwoLevelReviewClick()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.skiTwoLevelReviewClick();
+    }
 }

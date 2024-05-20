@@ -453,7 +453,10 @@ public class UtilityFunctions extends BaseTestConfig {
        return draftStatusProjectXpath;
 
     }
-
+    public static String returnIndividualContentProjectCreatedXpath(String projectName) {
+        String projectXpath = CokreatConstants.IndividualContentProjectXpath1 + projectName + CokreatConstants.IndividualContentProjectXpath2;
+        return projectXpath;
+    }
 
 
     public static String returnDeleteProjectCreatedXpath(String projectName) {

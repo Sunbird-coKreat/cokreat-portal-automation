@@ -140,6 +140,10 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'My Projects')]")
     private WebElement verifyMyProjects;
 
+    @FindBy(how = How.XPATH, using = "//label[@for='searchCriteria']")
+    private WebElement getIndividualContentNotTargetedToAnyCollectionRadioBtn;
+
+
     public void createNewBtn() {
 
         UtilityFunctions.waitToBeClickableAndClick(createNewBtn);
@@ -349,6 +353,13 @@ public class CreateProjectPage {
         UtilityFunctions.waitToBeClickableAndClick(verifyMyProjects);
         Listeners.addLogs("Clicked on verifyMyProjects");
         UtilityFunctions.validatIsElementPresent(verifyMyProjects,"verifyMyProjects Not displayed");
+
+    }
+
+    public void selectGetIndividualContentNotTargetedToAnyCollectionRadioBtn() {
+
+        UtilityFunctions.waitToBeClickableAndClick(getIndividualContentNotTargetedToAnyCollectionRadioBtn);
+        Listeners.addLogs("Clicked getIndividualContentNotTargetedToAnyCollectionRadioBtn");
 
     }
 }
