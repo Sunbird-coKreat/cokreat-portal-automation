@@ -82,9 +82,9 @@ public class BaseTestConfig {
 
             driver.get(pro.getProperty("ProdURL"));
         }
-        else if (Env.equalsIgnoreCase("Dev")) {
+        else if (Env.equalsIgnoreCase("OCI")) {
 
-            driver.get(pro.getProperty("DockDevURL"));
+            driver.get(pro.getProperty("OCIURL"));
         }
 
     }

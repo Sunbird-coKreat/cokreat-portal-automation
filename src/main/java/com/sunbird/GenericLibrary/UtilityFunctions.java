@@ -201,7 +201,12 @@ public class UtilityFunctions extends BaseTestConfig {
         if (Env.equalsIgnoreCase("STAGING")) {
             return path2 = System.getProperty("user.dir") + "//Config//CokreatStaging.Properties";
 
-        } else if (Env.equalsIgnoreCase("PREPROD")) {
+        }
+        else if (Env.equalsIgnoreCase("OCI")) {
+            return path2 = System.getProperty("user.dir") + "//Config//CokreatOCI.Properties";
+
+        }
+        else if (Env.equalsIgnoreCase("PREPROD")) {
 
             return path2 = System.getProperty("user.dir") + "//Config//CokreatPreProd.Properties";
 
@@ -455,6 +460,10 @@ public class UtilityFunctions extends BaseTestConfig {
     }
     public static String returnIndividualContentProjectCreatedXpath(String projectName) {
         String projectXpath = CokreatConstants.IndividualContentProjectXpath1 + projectName + CokreatConstants.IndividualContentProjectXpath2;
+        return projectXpath;
+    }
+    public static String returnNominationPendingStatusProjectCreatedXpath(String projectName) {
+        String projectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.nominationPendingProject2;
         return projectXpath;
     }
 

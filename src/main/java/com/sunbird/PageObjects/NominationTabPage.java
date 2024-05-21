@@ -10,11 +10,7 @@ import org.openqa.selenium.support.How;
 public class NominationTabPage {
 
 
-    public static String returnApprovedXpath(String userName)
-    {
-        String approvedXpath= CokreatConstants.approvedXpath+userName+CokreatConstants.approvedXpath2;
-        return approvedXpath;
-    }
+
     @FindBy(how = How.XPATH, using = "//th[contains(text(),'Contributor Name')]")
     private WebElement assertContributorNameLabel;
 
@@ -36,6 +32,24 @@ public class NominationTabPage {
     @FindBy(how = How.XPATH, using = "//*[contains(text(),'Download Nominations List')]")
     private WebElement assertDownloadNominationsListButton;
 
+    @FindBy(how = How.XPATH, using = "//th[contains(text(),'Contributor Name')]//following::span[contains(text(),'Pending')]//following::button[contains(text(),'Open')]")
+    private WebElement pendingStatusWithOpenButton;
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Accept')]")
+    private WebElement acceptBtn;
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Reject')]")
+    private WebElement rejectBtn;
+    @FindBy(how = How.XPATH, using = "//textarea[@name='rejectComment']")
+    private WebElement commentBoxForReject;
+
+    @FindBy(how = How.XPATH, using = "//button[@id='submitReview']")
+    private WebElement submitBtnInReasonsForRejection;
+
+    @FindBy(how = How.XPATH, using = "//strong[contains(text(),'Nomination updated successfully...')]")
+    private WebElement verifyNominationUpdatedSuccessToastrMsg;
+
+
     public void verifyAllLabelsInNomindationTab() {
         UtilityFunctions.isElementPresent(assertContributorNameLabel);
         UtilityFunctions.validatIsElementPresent(assertContributorNameLabel,"assertContributorNameLabel Not displayed");
@@ -54,5 +68,46 @@ public class NominationTabPage {
         Listeners.addLogs("assertDownloadNominationsListButton displayed");
 
     }
+    public static String returnApprovedXpath(String userName)
+    {
+        String approvedXpath= CokreatConstants.approvedXpath+userName+CokreatConstants.approvedXpath2;
+        return approvedXpath;
+    }
+    public static String returnRejectionStatusXpath(String userName)
+    {
+        String rejectedXpath= CokreatConstants.approvedXpath+userName+CokreatConstants.nominationRejectedProject2;
+        return rejectedXpath;
+    }
+    public void pendingStatusWithOpenButton() {
 
+        UtilityFunctions.waitForElementAndClickable(pendingStatusWithOpenButton);
+        Listeners.addLogs("Clicked on pendingStatusWithOpenButton");
+    }
+    public void acceptBtn() {
+
+        UtilityFunctions.waitForElementAndClickable(acceptBtn);
+        Listeners.addLogs("Clicked on acceptBtn");
+    }
+    public void verifyNominationUpdatedSuccessToastrMsg() {
+
+        UtilityFunctions.waitForVisibilityOfWebElement(verifyNominationUpdatedSuccessToastrMsg);
+        UtilityFunctions.validatIsElementPresent(verifyNominationUpdatedSuccessToastrMsg,"verifyNominationUpdatedSuccessToastrMsg failed");
+        Listeners.addLogs("Verified verifyNominationUpdatedSuccessToastrMsg");
+        UtilityFunctions.waitForElementToDisappear(verifyNominationUpdatedSuccessToastrMsg);
+    }
+    public void rejectBtn() {
+
+        UtilityFunctions.waitForElementAndClickable(rejectBtn);
+        Listeners.addLogs("Clicked on rejectBtn");
+    }
+    public void enterReasonForRejection() {
+
+        UtilityFunctions.waitToBeClickableAndSendKeys(commentBoxForReject,"Need to be Rechecked");
+        Listeners.addLogs("entered reasons for rejection");
+    }
+    public void submitBtnInRejectionBox() {
+
+        UtilityFunctions.waitForElementAndClickable(submitBtnInReasonsForRejection);
+        Listeners.addLogs("Clicked on submitBtnInReasonsForRejection");
+    }
 }

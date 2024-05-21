@@ -17,12 +17,47 @@ public class NominationTabPageAction extends BaseTestConfig {
        return nominationTab.returnApprovedXpath(userName);
 
     }
+    public static String getRejectedStatusXpath(String userName)
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        return nominationTab.returnRejectionStatusXpath(userName);
+
+    }
 
     public static void assertAllLabelDetailsInNominationTab()
     {
         NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
 nominationTab.verifyAllLabelsInNomindationTab();
     }
-
+    public static void clickPendingStatusWithOpenButton()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.pendingStatusWithOpenButton();
+    }
+    public static void clickAcceptBtn()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.acceptBtn();
+    }
+    public static void clickRejectBtn()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.rejectBtn();
+    }
+    public static void assertNominationUpdatedSuccessToastrMsg()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.verifyNominationUpdatedSuccessToastrMsg();
+    }
+    public static void enterReasonForRejectingNomination()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.enterReasonForRejection();
+    }
+    public static void clickSubmitBtnInRejectionBox()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.submitBtnInRejectionBox();
+    }
 }
 	
