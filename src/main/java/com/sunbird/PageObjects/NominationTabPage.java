@@ -49,6 +49,17 @@ public class NominationTabPage {
     @FindBy(how = How.XPATH, using = "//strong[contains(text(),'Nomination updated successfully...')]")
     private WebElement verifyNominationUpdatedSuccessToastrMsg;
 
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'left line')]//following::div[contains(text(),'Approved')]//preceding::span[1]")
+    private WebElement totalCount;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'left line')]//following::div[contains(text(),'Rejected')]//preceding::span[1]")
+    private WebElement approvedCount;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'left line')]//following::div[contains(text(),'Approved')]//following::span[1]")
+    private WebElement rejectedCount;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'left line')]//following::div[contains(text(),'Rejected')]//following::span[1]")
+    private WebElement pendingCount;
 
     public void verifyAllLabelsInNomindationTab() {
         UtilityFunctions.isElementPresent(assertContributorNameLabel);
@@ -109,5 +120,30 @@ public class NominationTabPage {
 
         UtilityFunctions.waitForElementAndClickable(submitBtnInReasonsForRejection);
         Listeners.addLogs("Clicked on submitBtnInReasonsForRejection");
+    }
+
+    public String getTotalCount() {
+        UtilityFunctions.waitForVisibilityOfWebElement(totalCount);
+        String totalcount=UtilityFunctions.getTextFromElement(totalCount);
+        Listeners.addLogs("totalCount validated " +totalcount);
+        return totalcount;
+    }
+    public String getApprovedCount() {
+        UtilityFunctions.waitForVisibilityOfWebElement(approvedCount);
+        String approvedcount=UtilityFunctions.getTextFromElement(approvedCount);
+        Listeners.addLogs("approvedCount validated " +approvedcount);
+        return approvedcount;
+    }
+    public String getRejectedCount() {
+        UtilityFunctions.waitForVisibilityOfWebElement(rejectedCount);
+        String rejectedcount=UtilityFunctions.getTextFromElement(rejectedCount);
+        Listeners.addLogs("rejectedCount validated " +rejectedcount);
+        return rejectedcount;
+    }
+    public String getPendingCount() {
+        UtilityFunctions.waitForVisibilityOfWebElement(pendingCount);
+        String pendingcount=UtilityFunctions.getTextFromElement(pendingCount);
+        Listeners.addLogs("pendindcount validated " +pendingcount);
+        return pendingcount;
     }
 }

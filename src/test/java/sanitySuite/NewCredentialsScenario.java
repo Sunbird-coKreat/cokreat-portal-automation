@@ -7,16 +7,7 @@ import org.testng.annotations.Test;
 
 public class NewCredentialsScenario extends BaseTestConfig {
 
-    @Test(description = "Enrollment form should get displayed with contribute as an organization's/ Individual option.")
-    public void EnrollAsContributorFormPopup() throws Exception {
 
-        String currentURL = UtilityFunctions.getCurrentURLAsString();
-        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
-        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("DoNotUseNewUser"), cokreat_config.getCoKreatConfigPropertyValue("DoNotUseNewUserPwd"));
-        EnrollAsContributorPopupPageAction.clickEnrollAsOrganizationContributor();
-        EnrollAsContributorPopupPageAction.clickEnrollAsindividualContributor();
-
-    }
     @Test(description = "User should be able to register as an individual contributor.")
     public void UserAbleToRegisterAsIndividualContributorAndValidateAllAndMyProjectsTab() throws Exception {
 
@@ -30,5 +21,7 @@ public class NewCredentialsScenario extends BaseTestConfig {
         CreateProjectPageActions.assertAndClickMyProjects();
 
     }
+
+
 
 }

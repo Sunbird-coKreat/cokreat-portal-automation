@@ -380,8 +380,8 @@ UtilityFunctions.assertWebElementAsString(pendingStatus);
         UtilityFunctions.assertWebElementAsString(approvedStatus);
     }*/
 
-    @Test(description = "Verify Sourcing org Admin  is able to reject  nomination")
-    public void SourcingOrgAdminIsAbleToRejectNomination() throws Exception {
+    @Test(description = "Verify content status count is available in nomination Tab for project with Digital Textbook")
+    public void VerifyNominationStatusCountInNominationTabForProjectWithDigitalTextbook() throws Exception {
 
         String currentURL = UtilityFunctions.getCurrentURLAsString();
         driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
@@ -400,7 +400,7 @@ UtilityFunctions.assertWebElementAsString(pendingStatus);
         CreateProjectPageActions.clickContentTypeDropdown();
         CreateProjectPageActions.selectValuesInContentTypeDropdown();
         UtilityFunctions.MoveByOffSet(50, 100);
-        CreateProjectPageActions.clickTargetCollectionDropdown("Course");
+        CreateProjectPageActions.clickTargetCollectionDropdown("Digital Textbook");
         UtilityFunctions.scrollDownUsingPixelValue();
         UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
         CreateProjectPageActions.selectFirstContentInTargetCollection();
@@ -425,17 +425,55 @@ UtilityFunctions.assertWebElementAsString(pendingStatus);
         UtilityFunctions.assertWebElementAsString(pendingStatus);
         DashboardPageActions.clickUserProfileIcon();
         DashboardPageActions.clickLogOut();
+
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("INDIVIDUALCONTRIBUTOR_USERNAME"), cokreat_config.getCoKreatConfigPropertyValue("INDIVIDUALCONTRIBUTOR_PASSWORD"));
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        ProjectTOCInContributePageAction.clickSelectContentTypeBtn();
+        ProjectTOCInContributePageAction.selectAllContentTypeCheckBox();
+        ProjectTOCInContributePageAction.submitClickInContentTypeSelection();
+        ProjectTOCInContributePageAction.AssertContentTypeSaveToastrMsg();
+        ProjectTOCInContributePageAction.clickSelectCheckBox();
+        ProjectTOCInContributePageAction.ClickNominateBtn();
+        ProjectTOCInContributePageAction.ClickSubmitBtnInNominationSubmit();
+        ProjectTOCInContributePageAction.AssertNominationSentToastrMsg();
+        UtilityFunctions.assertWebElementAsString(pendingStatus);
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+
         driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
         LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
         UtilityFunctions.findDynamicElementAndClick(projectXpath);
         CreateProjectPageActions.assertNominationTabAndClick();
         UtilityFunctions.scrollDownUsingPixelValue();
+
+    NominationTabPageAction.assertTotalCount("3");
+    NominationTabPageAction.assertApprovedCount("1");
+    NominationTabPageAction.assertRejectedCount("0");
+    NominationTabPageAction.assertPendingCount("2");
+
         NominationTabPageAction.clickPendingStatusWithOpenButton();
         NominationTabPageAction.clickRejectBtn();
         NominationTabPageAction.enterReasonForRejectingNomination();
         NominationTabPageAction.clickSubmitBtnInRejectionBox();
         NominationTabPageAction.assertNominationUpdatedSuccessToastrMsg();
-        String approvedStatus = NominationTabPageAction.getRejectedStatusXpath(cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_USR"));
+        String rejectedStatus = NominationTabPageAction.getRejectedStatusXpath(cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_ProfileName"));
+        UtilityFunctions.assertWebElementAsString(rejectedStatus);
+
+        NominationTabPageAction.assertTotalCount("3");
+        NominationTabPageAction.assertApprovedCount("1");
+        NominationTabPageAction.assertRejectedCount("1");
+        NominationTabPageAction.assertPendingCount("1");
+
+        NominationTabPageAction.clickPendingStatusWithOpenButton();
+        NominationTabPageAction.clickAcceptBtn();
+        NominationTabPageAction.assertNominationUpdatedSuccessToastrMsg();
+        String approvedStatus = NominationTabPageAction.getApprovedStatusXpath(cokreat_config.getCoKreatConfigPropertyValue("INDIVIDUALCONTRIBUTOR_ProfileName"));
         UtilityFunctions.assertWebElementAsString(approvedStatus);
+
+        NominationTabPageAction.assertTotalCount("3");
+        NominationTabPageAction.assertApprovedCount("2");
+        NominationTabPageAction.assertRejectedCount("1");
+        NominationTabPageAction.assertPendingCount("0");
     }
     }
