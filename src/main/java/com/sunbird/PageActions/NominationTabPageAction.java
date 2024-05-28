@@ -89,7 +89,23 @@ nominationTab.verifyAllLabelsInNomindationTab();
         NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
         String pendingCount=nominationTab.getPendingCount();
         UtilityFunctions.stringValueComparision(pendingCount,expected, "Failed to validated pendingCount");
-
+    }
+    public static void assertSampleCountInNominationTocPage(String expected)
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        String actualCount=nominationTab.getSampleCountInNominationTOCPage();
+        UtilityFunctions.stringValueComparision(actualCount,expected, "Failed to validated sampleCount");
+    }
+    public static void clickViewSampleBtn()
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        nominationTab.viewSampleContentBtn();
+    }
+    public static void assertSampleCountInNominationContentTocPage(String expected)
+    {
+        NominationTabPage nominationTab = PageFactory.initElements(driver, NominationTabPage.class);
+        String actualCount=nominationTab.getSampleCountInNominationContentTOCPage();
+        UtilityFunctions.stringValueComparision(actualCount,expected, "Failed to validated sampleCount InNominationContentTOCPage");
     }
 }
 	

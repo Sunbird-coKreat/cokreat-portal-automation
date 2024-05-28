@@ -61,6 +61,15 @@ public class NominationTabPage {
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'left line')]//following::div[contains(text(),'Rejected')]//following::span[1]")
     private WebElement pendingCount;
 
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'View Sample Content')]//preceding::td[1]")
+    private WebElement verifySampleCountInNominationTOCPage;
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'View Sample Content')]")
+    private WebElement viewSampleContent;
+
+    @FindBy(how = How.XPATH, using = "//dd[contains(text(),'Total Content')]//preceding::dt")
+    private WebElement verifySampleCountInNominationContentTOCPage;
+
     public void verifyAllLabelsInNomindationTab() {
         UtilityFunctions.isElementPresent(assertContributorNameLabel);
         UtilityFunctions.validatIsElementPresent(assertContributorNameLabel,"assertContributorNameLabel Not displayed");
@@ -145,5 +154,22 @@ public class NominationTabPage {
         String pendingcount=UtilityFunctions.getTextFromElement(pendingCount);
         Listeners.addLogs("pendindcount validated " +pendingcount);
         return pendingcount;
+    }
+    public String getSampleCountInNominationTOCPage() {
+        UtilityFunctions.waitForVisibilityOfWebElement(verifySampleCountInNominationTOCPage);
+        String sampleCount=UtilityFunctions.getTextFromElement(verifySampleCountInNominationTOCPage);
+        Listeners.addLogs("sampleCount validated in NominationTOCPage " +sampleCount);
+        return sampleCount;
+    }
+    public void viewSampleContentBtn() {
+
+        UtilityFunctions.waitForElementAndClickable(viewSampleContent);
+        Listeners.addLogs("Clicked on viewSampleContent");
+    }
+    public String getSampleCountInNominationContentTOCPage() {
+        UtilityFunctions.waitForVisibilityOfWebElement(verifySampleCountInNominationContentTOCPage);
+        String sampleCount=UtilityFunctions.getTextFromElement(verifySampleCountInNominationContentTOCPage);
+        Listeners.addLogs("sampleCount validated in verifySampleCountInNominationContentTOCPage " +sampleCount);
+        return sampleCount;
     }
 }

@@ -11,9 +11,9 @@
 <!---->
 		<!--<class name="sanitySuite.Suite1" />-->
 
-	<!--	<class name="sanity.FirstStep4" />-->
-		<class name="sanitySuite.Suite1" />
-		<class name="sanitySuite.NewCredentialsScenario" />
+		<class name="sanity.FirstStep4" />
+		<!--<class name="sanitySuite.Suite1" />
+		<class name="sanitySuite.NewCredentialsScenario" />-->
 
 
 	</classes>

@@ -14,5 +14,7 @@ public static String approvedXpath2="')]//following::span[contains(text(),'Appro
     public static String IndividualContentProjectXpath2="')])[3]//following::button[contains(text(),'Open')][1]";
     public static String nominationPendingProject2="')]//following::span[contains(text(),'Pending')][1]";
     public static String nominationRejectedProject2="')]//following::span[contains(text(),'Rejected')]";
+    public static String contributeContentNameXpath1="//*[contains(text(),'";
+    public static String contributeContentNameXpath2="')]";
 
 }

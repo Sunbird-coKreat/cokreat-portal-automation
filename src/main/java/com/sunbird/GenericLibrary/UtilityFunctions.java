@@ -472,6 +472,10 @@ public class UtilityFunctions extends BaseTestConfig {
         String deleteProjectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.deleteProjectXpath2;
         return deleteProjectXpath;
     }
+    public static String returnContributeContentNameXpath(String contentName) {
+        String contentNameXpath = CokreatConstants.contributeContentNameXpath1 + contentName + CokreatConstants.contributeContentNameXpath2;
+        return contentNameXpath;
+    }
     public static void assertWebElementAsString(String xpathValue) throws InterruptedException {
 
             UtilityFunctions.threadSleep(8000);
