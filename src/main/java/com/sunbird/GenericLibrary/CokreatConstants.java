@@ -16,5 +16,7 @@ public static String approvedXpath2="')]//following::span[contains(text(),'Appro
     public static String nominationRejectedProject2="')]//following::span[contains(text(),'Rejected')]";
     public static String contributeContentNameXpath1="//*[contains(text(),'";
     public static String contributeContentNameXpath2="')]";
+    public static String projectNominationApprovedStatus="//preceding::span[contains(text(),'Approved')]";
+
 
 }

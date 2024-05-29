@@ -48,6 +48,10 @@ public class CreateProjectPageActions extends BaseTestConfig {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.selectedSetOfContributors();
     }
+    public static void clickModifyBtnInSetOfContributors() {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.modifyBtnInSetOfContributors();
+    }
     public static void enterNominationEndDate(String endDate) {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.nominationEndDate(endDate);

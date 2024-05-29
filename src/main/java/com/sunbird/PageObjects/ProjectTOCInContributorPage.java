@@ -67,6 +67,9 @@ public class ProjectTOCInContributorPage {
     @FindBy(how = How.XPATH, using = "//strong[contains(text(),'Content sent for review')]")
     private WebElement verifyContentSentForReview;
 
+    @FindBy(how = How.XPATH, using = "//strong[contains(text(),'Content accepted successfully')]")
+    private WebElement verifyContentAcceptedSuccesfully;
+
     @FindBy(how = How.XPATH, using = "//strong[contains(text(),'Content Successfully Uploaded')]")
     private WebElement verifyContentSuccessfullyUploaded;
 
@@ -76,6 +79,12 @@ public class ProjectTOCInContributorPage {
 
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Back')]")
     private WebElement backBtn;
+
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Upload Content')]")
+    private WebElement uploadContentBtn;
+
+    @FindBy(how = How.XPATH, using = "//button[@id='submitContent']")
+    private WebElement submitForReviewBtn;
 
     public void selectContentTypesCheckBox() {
 UtilityFunctions.waitForVisibilityOfWebElement(selectContentTypesCheckBox.get(0));
@@ -200,5 +209,20 @@ UtilityFunctions.waitForElementIsVisible(selectFilesBtn);
         UtilityFunctions.waitToBeClickableAndClick(backBtn);
         Listeners.addLogs("Clicked on backBtn");
     }
+    public void uploadContentBtn() {
+        UtilityFunctions.waitToBeClickableAndClick(uploadContentBtn);
+        Listeners.addLogs("Clicked on uploadContentBtn");
+    }
+    public void submitForReviewBtn() throws InterruptedException {
+        UtilityFunctions.waitToBeClickableAndClick(submitForReviewBtn);
+        //   UtilityFunctions.clickUsingJavaScriptExecutor(submitContentBtn);
 
+        Listeners.addLogs("Clicked on submitForReview");
+    }
+    public void verifyContentAcceptedSuccesfully() {
+        UtilityFunctions.waitForVisibilityOfWebElement(verifyContentAcceptedSuccesfully);
+        UtilityFunctions.validatIsElementPresent(verifyContentAcceptedSuccesfully,"verifyContentAcceptedSuccesfully failed");
+        Listeners.addLogs("Verified verifyContentAcceptedSuccesfully");
+        UtilityFunctions.waitForElementToDisappear(verifyContentAcceptedSuccesfully);
+    }
 }

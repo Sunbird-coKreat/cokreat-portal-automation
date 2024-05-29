@@ -34,6 +34,9 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//label[@for='type_restricted']")
     private WebElement fromSelectedSetofContributorsRadioBtn;
 
+    @FindBy(how = How.XPATH, using = "//i[@data-tooltip='Modify']")
+    private WebElement modifyBtnInSetOfContributors;
+
     // select date
     @FindBy(how = How.XPATH, using = "//input[@formcontrolname='nomination_enddate']")
     private static WebElement nominationEndDate;
@@ -360,6 +363,12 @@ public class CreateProjectPage {
 
         UtilityFunctions.waitToBeClickableAndClick(getIndividualContentNotTargetedToAnyCollectionRadioBtn);
         Listeners.addLogs("Clicked getIndividualContentNotTargetedToAnyCollectionRadioBtn");
+
+    }
+    public void modifyBtnInSetOfContributors() {
+
+        UtilityFunctions.waitToBeClickableAndClick(modifyBtnInSetOfContributors);
+        Listeners.addLogs("Clicked modifyBtnInSetOfContributors");
 
     }
 }

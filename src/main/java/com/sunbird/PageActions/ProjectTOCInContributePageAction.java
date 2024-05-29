@@ -126,5 +126,23 @@ public class ProjectTOCInContributePageAction extends BaseTestConfig {
         ProjectTOCInContributorPage projectTOCInContributorPage = PageFactory.initElements(driver, ProjectTOCInContributorPage.class);
         projectTOCInContributorPage.backBtn();
     }
+    public static void clickUploadContentBtn()
+    {
+        ProjectTOCInContributorPage projectTOCInContributorPage = PageFactory.initElements(driver, ProjectTOCInContributorPage.class);
+        projectTOCInContributorPage.uploadContentBtn();
+    }
+    public static void clickSubmitForReview() throws InterruptedException {
+        ProjectTOCInContributorPage projectTOCInContributorPage = PageFactory.initElements(driver, ProjectTOCInContributorPage.class);
+        projectTOCInContributorPage.submitForReviewBtn();
+        UtilityFunctions.threadSleep(15000);
+        UtilityFunctions.threadSleep(15000);
+        UtilityFunctions.threadSleep(15000);
+
+    }
+    public static void assertContentAcceptedSuccesfully()
+    {
+        ProjectTOCInContributorPage projectTOCInContributorPage = PageFactory.initElements(driver, ProjectTOCInContributorPage.class);
+        projectTOCInContributorPage.verifyContentAcceptedSuccesfully();
+    }
 }
 	
