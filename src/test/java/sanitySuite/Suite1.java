@@ -1242,4 +1242,178 @@ public class Suite1 extends BaseTestConfig {
         DashboardPageActions.clickLogOut();
 
     }
+
+    @Test(description = "Verify individual contributor is able to nominate to without target collection project without uploading the sample")
+    public void VerifyIndividualContributorIsAbleToUploadSampleAndNominateForWithoutTargetCollectionProject() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.clickIndividualContentNotTargetToAnyCollection();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_USR"), cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_PWD"));
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        ProjectTOCInContributePageAction.clickSelectContentTypeBtn();
+        ProjectTOCInContributePageAction.selectAllContentTypeCheckBox();
+        ProjectTOCInContributePageAction.submitClickInContentTypeSelection();
+        ProjectTOCInContributePageAction.AssertContentTypeSaveToastrMsg();
+        ProjectTOCInContributePageAction.clickUploadSample();
+        ProjectTOCInContributePageAction.selectContributionTypeContent("eTextbook");
+        ProjectTOCInContributePageAction.clickContinueBtn();
+        ProjectTOCInContributePageAction.selectFileAndUpload("PDF");
+        ProjectTOCInContributePageAction.assertContentSuccesfullyUploadedMsg();
+        ProjectTOCInContributePageAction.clickSubmitContentBtn();
+        String eTextbookName=ProjectTOCInContributePageAction.enterETextbookName();
+        ProjectTOCInContributePageAction.enterETextBookCopyRightYear();
+        ProjectTOCInContributePageAction.clickTermsAndConditionInETextbookType();
+        ProjectTOCInContributePageAction.clickSubmitBtnETextbookType();
+        ProjectTOCInContributePageAction.assertContentSentForReview();
+        ProjectTOCInContributePageAction.ClickNominateBtn();
+        ProjectTOCInContributePageAction.ClickSubmitBtnInNominationSubmit();
+        ProjectTOCInContributePageAction.AssertNominationSentToastrMsg();
+    }
+    @Test(description = "Verify contirbution org admin is able to upload sample and nominate to the without target collection Project")
+    public void VerifyContirbutionOrgAdminIsAbleToUploadSampleAndNominateForWithoutTargetCollectionProject() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.clickIndividualContentNotTargetToAnyCollection();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("Contributor_Org_Admin"), cokreat_config.getCoKreatConfigPropertyValue("Contributor_Org_Admin_PWD"));
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        ProjectTOCInContributePageAction.clickSelectContentTypeBtn();
+        ProjectTOCInContributePageAction.selectAllContentTypeCheckBox();
+        ProjectTOCInContributePageAction.submitClickInContentTypeSelection();
+        ProjectTOCInContributePageAction.AssertContentTypeSaveToastrMsg();
+        ProjectTOCInContributePageAction.clickUploadSample();
+        ProjectTOCInContributePageAction.selectContributionTypeContent("eTextbook");
+        ProjectTOCInContributePageAction.clickContinueBtn();
+        ProjectTOCInContributePageAction.selectFileAndUpload("PDF");
+        ProjectTOCInContributePageAction.assertContentSuccesfullyUploadedMsg();
+        ProjectTOCInContributePageAction.clickSubmitContentBtn();
+        String eTextbookName=ProjectTOCInContributePageAction.enterETextbookName();
+        ProjectTOCInContributePageAction.enterETextBookCopyRightYear();
+        ProjectTOCInContributePageAction.clickTermsAndConditionInETextbookType();
+        ProjectTOCInContributePageAction.clickSubmitBtnETextbookType();
+        ProjectTOCInContributePageAction.assertContentSentForReview();
+        ProjectTOCInContributePageAction.ClickNominateBtn();
+        ProjectTOCInContributePageAction.ClickSubmitBtnInNominationSubmit();
+        ProjectTOCInContributePageAction.AssertNominationSentToastrMsg();
+    }
+    @Test(description = "Verify Sourcing org Admin  is able to view the sample and accept the nomination")
+    public void AdminAbleToViewSampleAndItsCountAndAcceptTheNominationInNominationTab() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Course");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("ContributeURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_USR"), cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_PWD"));
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        ProjectTOCInContributePageAction.clickSelectContentTypeBtn();
+        ProjectTOCInContributePageAction.selectAllContentTypeCheckBox();
+        ProjectTOCInContributePageAction.submitClickInContentTypeSelection();
+        ProjectTOCInContributePageAction.AssertContentTypeSaveToastrMsg();
+        ProjectTOCInContributePageAction.clickSelectCheckBox();
+        ProjectTOCInContributePageAction.clickUploadSample();
+        ProjectTOCInContributePageAction.clickCreateNewBtn();
+        ProjectTOCInContributePageAction.selectContributionTypeContent("eTextbook");
+        ProjectTOCInContributePageAction.clickContinueBtn();
+        ProjectTOCInContributePageAction.selectFileAndUpload("PDF");
+        ProjectTOCInContributePageAction.assertContentSuccesfullyUploadedMsg();
+        ProjectTOCInContributePageAction.clickSubmitContentBtn();
+        String eTextbookName=ProjectTOCInContributePageAction.enterETextbookName();
+        ProjectTOCInContributePageAction.enterETextBookCopyRightYear();
+        ProjectTOCInContributePageAction.clickTermsAndConditionInETextbookType();
+        ProjectTOCInContributePageAction.clickSubmitBtnETextbookType();
+        ProjectTOCInContributePageAction.assertContentSentForReview();
+        ProjectTOCInContributePageAction.fetchSampleCountInContributionTOCPage("1");
+        ProjectTOCInContributePageAction.clickBackBtn();
+        ProjectTOCInContributePageAction.ClickNominateBtn();
+        ProjectTOCInContributePageAction.ClickSubmitBtnInNominationSubmit();
+        ProjectTOCInContributePageAction.AssertNominationSentToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        CreateProjectPageActions.assertNominationTabAndClick();
+        UtilityFunctions.scrollDownUsingPixelValue();
+        NominationTabPageAction.clickPendingStatusWithOpenButton();
+        NominationTabPageAction.clickViewSampleBtn();
+        NominationTabPageAction.assertSampleCountInNominationContentTocPage("1");
+        ProjectTOCInContributePageAction.clickBackBtn();
+        NominationTabPageAction.clickAcceptBtn();
+        NominationTabPageAction.assertNominationUpdatedSuccessToastrMsg();
+        String approvedStatus = NominationTabPageAction.getApprovedStatusXpath(cokreat_config.getCoKreatConfigPropertyValue("IndiVidual_CON_ProfileName"));
+        UtilityFunctions.assertWebElementAsString(approvedStatus);
+
+
+    }
 }

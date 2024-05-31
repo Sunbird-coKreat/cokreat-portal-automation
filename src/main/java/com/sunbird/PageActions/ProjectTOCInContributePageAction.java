@@ -86,6 +86,8 @@ public class ProjectTOCInContributePageAction extends BaseTestConfig {
     public static void clickSubmitContentBtn() throws InterruptedException {
         ProjectTOCInContributorPage projectTOCInContributorPage = PageFactory.initElements(driver, ProjectTOCInContributorPage.class);
         projectTOCInContributorPage.submitContentBtn();
+        UtilityFunctions.threadSleep(15000);
+
     }
     public static String enterETextbookName()
     {
