@@ -518,7 +518,7 @@ public class UtilityFunctions extends BaseTestConfig {
         }
     }
 
-    public static void validatElementNotPresen(WebElement element) {
+    public static void validatElementNotPresent(WebElement element) {
         boolean status = isElementPresent(element);
         if (status == false) {
             Assert.assertFalse(status, "Element not displayed");

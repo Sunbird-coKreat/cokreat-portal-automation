@@ -1530,4 +1530,100 @@ public class Suite1 extends BaseTestConfig {
         DashboardPageActions.clickLogOut();
 
     }
+
+    @Test(description = "Verify assigned reviewer is able to view the assigned below Project in My Projects tab for nominationEnabledProject")
+    public void VerifyAssignedReviewerAbleToViewTheAssignedProjectInMyProjectTabForNominationEnabledProject() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Course");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        AssignUsersToProjectTabInSourcingPageActions.assertAssignUserToProjectTabAndClick();
+        AssignUsersToProjectTabInSourcingPageActions.enterUsernameInSearchTextBox(cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerProfieName"));
+        AssignUsersToProjectTabInSourcingPageActions.clickSearchIconBtn();
+        Thread.sleep(2000);
+        AssignUsersToProjectTabInSourcingPageActions.clickSelectRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.selectReviewerRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.assertRoleUpdatedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerUsr"), cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerPwd"));
+        CreateProjectPageActions.assertCreateNewProjectShouldNotDisplay();
+        CreateProjectPageActions.assertManageUserShouldNotDisplay();
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        CreateProjectPageActions.assertNominationTabAndClick();
+        CreateProjectPageActions.assertContributionDashboardTabAndClick();
+        CreateProjectPageActions.assertReportTabAndClick();
+    }
+    @Test(description = "Verify assigned reviewer is able to view the assigned below Project in My Projects tab for nominationDisabledProject")
+    public void VerifyAssignedReviewerAbleToViewTheAssignedProjectInMyProjectTabForNominationDisabledProject() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.clickFromYourOrganizationOnlyRadioBtn();
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Course");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+
+        AssignUsersToProjectTabInSourcingPageActions.assertAssignUserToProjectTabAndClick();
+        AssignUsersToProjectTabInSourcingPageActions.enterUsernameInSearchTextBox(cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerProfieName"));
+        AssignUsersToProjectTabInSourcingPageActions.clickSearchIconBtn();
+        Thread.sleep(2000);
+        AssignUsersToProjectTabInSourcingPageActions.clickSelectRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.selectReviewerRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.assertRoleUpdatedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerUsr"), cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerPwd"));
+        CreateProjectPageActions.assertCreateNewProjectShouldNotDisplay();
+        CreateProjectPageActions.assertManageUserShouldNotDisplay();
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        CreateProjectPageActions.nominationTabNotDisplayed();
+        CreateProjectPageActions.assertContributionDashboardTabAndClick();
+        CreateProjectPageActions.assertReportTabAndClick();
+    }
+
 }

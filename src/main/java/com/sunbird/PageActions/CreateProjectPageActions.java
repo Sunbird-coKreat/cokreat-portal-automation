@@ -222,4 +222,14 @@ createProjectPage.yesBtnInPublishProject();
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.skiTwoLevelReviewClick();
     }
+    public static void assertCreateNewProjectShouldNotDisplay()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.createNewProjectShouldNotDisplay();
+    }
+    public static void assertManageUserShouldNotDisplay()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.mangageUserShouldNotDisplay();
+    }
 }

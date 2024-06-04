@@ -10,6 +10,9 @@ import java.util.List;
 
 public class CreateProjectPage {
 
+    @FindBy(how = How.XPATH, using = "//*[contains(text(),'Manage Users')]")
+    private WebElement manageUserTab;
+
     @FindBy(how = How.XPATH, using = "//button[text()=' Create New Project']")
     private WebElement createNewBtn;
 
@@ -320,7 +323,7 @@ public class CreateProjectPage {
         Listeners.addLogs("assertReportTab");
     }
     public void verifyNominationTabNotDisplayed() {
-        UtilityFunctions.validatElementNotPresen(assertNominationTab);
+        UtilityFunctions.validatElementNotPresent(assertNominationTab);
         Listeners.addLogs("assertNominationTab Not displayed");
     }
     public void frameworkTypeDropdown() {
@@ -369,6 +372,16 @@ public class CreateProjectPage {
 
         UtilityFunctions.waitToBeClickableAndClick(modifyBtnInSetOfContributors);
         Listeners.addLogs("Clicked modifyBtnInSetOfContributors");
+
+    }
+    public void createNewProjectShouldNotDisplay() {
+UtilityFunctions.validatElementNotPresent(createNewBtn);
+        Listeners.addLogs("createNewBtn Not displayed");
+
+    }
+    public void mangageUserShouldNotDisplay() {
+        UtilityFunctions.validatElementNotPresent(manageUserTab);
+        Listeners.addLogs("manageUserTab Not displayed");
 
     }
 }
