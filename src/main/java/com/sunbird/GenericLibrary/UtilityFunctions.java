@@ -36,6 +36,7 @@ public class UtilityFunctions extends BaseTestConfig {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+        element.clear();
         element.sendKeys(Value);
     }
 
@@ -442,11 +443,17 @@ public class UtilityFunctions extends BaseTestConfig {
         UtilityFunctions.scrollInToviewUsingJavaScript(element);
         UtilityFunctions.waitForElementAndClickable(element);
         Listeners.addLogs("clicked on DynamicWebElement");
+        UtilityFunctions.threadSleep(2000);
+
     }
 
     public static String returnProjectCreatedXpath(String projectName) {
         String projectXpath = CokreatConstants.projectXpath1 + projectName + CokreatConstants.projectXpath2;
         return projectXpath;
+    }
+    public static String returnProjectCreatedXpathForModifyIcon(String projectName) {
+        String projectXpathModify = CokreatConstants.projectXpath1 + projectName + CokreatConstants.projectXpath2+CokreatConstants.modifyIconXpath;
+        return projectXpathModify;
     }
 
     public static String returnEditDraftProjectCreatedXpath(String projectName) {

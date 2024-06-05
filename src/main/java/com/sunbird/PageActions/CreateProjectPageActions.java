@@ -137,7 +137,11 @@ createProjectPage.selectContentInTargetCollection();
              CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
 createProjectPage.publishProject();
     }
-
+    public static void clickUpdateBtn()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.updateBtn();
+    }
     public static void clickSaveAsDraft()
     {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
@@ -153,6 +157,12 @@ createProjectPage.yesBtnInPublishProject();
       CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
      String actualText=createProjectPage.assertProjectPublishedToastrMsg();
       UtilityFunctions.stringValueComparision(actualText, CokreatConstants.projectPublishedMsg, "Failed to create publish");
+
+    }
+    public static void assertProjectModifiedToastrMsg()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+    createProjectPage.verifyProjectModifiedToastrMsg();
 
     }
     public static void assertCourseTabAndClick()
@@ -211,6 +221,11 @@ createProjectPage.yesBtnInPublishProject();
     {
         CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
         createProjectPage.verifyMyProjects();
+    }
+    public static void assertAndClickMyProjectsForSourcingPage()
+    {
+        CreateProjectPage createProjectPage = PageFactory.initElements(driver, CreateProjectPage.class);
+        createProjectPage.verifyMyProjectsForSourcingPage();
     }
     public static void clickIndividualContentNotTargetToAnyCollection()
     {

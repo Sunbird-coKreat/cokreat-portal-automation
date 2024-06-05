@@ -1625,5 +1625,91 @@ public class Suite1 extends BaseTestConfig {
         CreateProjectPageActions.assertContributionDashboardTabAndClick();
         CreateProjectPageActions.assertReportTabAndClick();
     }
+    @Test(description = "Verify whether Sourcing org Admin  is able to create nomination open and Skip review disabled without target collection Project")
+    public void SourcingOrgAdminAbleToCreateProjectWithNominationAndSkipReviewDisabledForWithoutTargetCollection() throws Exception {
 
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.clickIndividualContentNotTargetToAnyCollection();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        String projectXpath = UtilityFunctions.returnIndividualContentProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+    }
+
+    @Test(description = "Verify Sourcing org Admin  is able to modify the Project dates.")
+    public void SourcingOrgAdminAbleToModifyProjectDatesAndValidateUpdatedInformationAvailableOnAssignedReviewer() throws Exception {
+
+        String currentURL = UtilityFunctions.getCurrentURLAsString();
+        driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
+        LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
+        CreateProjectPageActions.clickCreateNewBtn();
+        CreateProjectPageActions.selectProjectCreationCollectionType();
+        CreateProjectPageActions.clickNextBtnInProjectCreationPopup();
+        String projectName = CreateProjectPageActions.enteredProjectName();
+        CreateProjectPageActions.enteredProjectDesc();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(3));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(4));
+        CreateProjectPageActions.enterRecognitionToContributors("Congratulations");
+        CreateProjectPageActions.clickNextButtonInProjectCreation();
+        CreateProjectPageActions.clickContentTypeDropdown();
+        CreateProjectPageActions.selectValuesInContentTypeDropdown();
+        UtilityFunctions.MoveByOffSet(50, 100);
+        CreateProjectPageActions.clickTargetCollectionDropdown("Course");
+        UtilityFunctions.scrollDownUsingPixelValue();
+        UtilityFunctions.dynamicElementHandlingForSelectTagnameInProjectCreation();
+        CreateProjectPageActions.selectFirstContentInTargetCollection();
+        CreateProjectPageActions.clickPublishProject();
+        CreateProjectPageActions.clickYesInPublishProjectPopup();
+        CreateProjectPageActions.assertProjectPublishedToastrMsg();
+        String projectXpath = UtilityFunctions.returnProjectCreatedXpath(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpath);
+        AssignUsersToProjectTabInSourcingPageActions.assertAssignUserToProjectTabAndClick();
+        AssignUsersToProjectTabInSourcingPageActions.enterUsernameInSearchTextBox(cokreat_config.getCoKreatConfigPropertyValue("SourcingOrgReviewerProfieName"));
+        AssignUsersToProjectTabInSourcingPageActions.clickSearchIconBtn();
+        Thread.sleep(2000);
+        AssignUsersToProjectTabInSourcingPageActions.clickSelectRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.selectReviewerRoleOption();
+        AssignUsersToProjectTabInSourcingPageActions.assertRoleUpdatedToastrMsg();
+        UtilityFunctions.scrollUpUsingPixelValue();
+        CreateProjectPageActions.assertAndClickMyProjectsForSourcingPage();
+        String projectXpathModify = UtilityFunctions.returnProjectCreatedXpathForModifyIcon(projectName);
+        UtilityFunctions.findDynamicElementAndClick(projectXpathModify);
+        UtilityFunctions.scrollDownUsingPixelValue();
+        CreateProjectPageActions.enterNominationEndDate(UtilityFunctions.setCurrentDate());
+        CreateProjectPageActions.enterNominationShortListingDate(UtilityFunctions.setFutureDate(1));
+        CreateProjectPageActions.enterContributionEndDate(UtilityFunctions.setFutureDate(2));
+        CreateProjectPageActions.enterProjectEndDate(UtilityFunctions.setFutureDate(3));
+        System.out.println(UtilityFunctions.setCurrentDate());
+        System.out.println(UtilityFunctions.setFutureDate(1));
+        System.out.println(UtilityFunctions.getTodayDate("MM/dd/yyyy"));
+        System.out.println(UtilityFunctions.getFutureDate(1));
+
+        CreateProjectPageActions.clickUpdateBtn();
+        CreateProjectPageActions.assertProjectModifiedToastrMsg();
+        DashboardPageActions.clickUserProfileIcon();
+        DashboardPageActions.clickLogOut();
+
+    }
 }

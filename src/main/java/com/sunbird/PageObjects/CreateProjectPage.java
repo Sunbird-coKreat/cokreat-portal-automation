@@ -104,6 +104,8 @@ public class CreateProjectPage {
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Publish Project')]")
     private WebElement publishProject;
 
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Update')]")
+    private WebElement updateBtn;
 
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Save as Draft')]")
     private WebElement saveAsDraft;
@@ -113,6 +115,9 @@ public class CreateProjectPage {
 
     @FindBy(how = How.XPATH, using = "//*[contains(text(),'Your project has been published suucessfully')]")
     private WebElement assertProjectPublished;
+
+    @FindBy(how = How.XPATH, using = "//strong[contains(text(),'The project has been modified successfully')]")
+    private WebElement assertProjectModifiedMsg;
 
     @FindBy(how = How.XPATH, using = "//*[contains(text(),'Your project has been saved as draft successfully!')]")
     private WebElement assertProjectSavedAsDraft;
@@ -145,6 +150,9 @@ public class CreateProjectPage {
 
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'My Projects')]")
     private WebElement verifyMyProjects;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'My Projects')]")
+    private WebElement verifyMyProjectsForSourcingPage;
 
     @FindBy(how = How.XPATH, using = "//label[@for='searchCriteria']")
     private WebElement getIndividualContentNotTargetedToAnyCollectionRadioBtn;
@@ -283,7 +291,12 @@ public class CreateProjectPage {
         UtilityFunctions.waitForElementAndClickable(yesInPublishPopup);
         Listeners.addLogs("Clicked on yesBtnInPublishProject");
     }
-
+    public void verifyProjectModifiedToastrMsg() {
+        UtilityFunctions.waitForVisibilityOfWebElement(assertProjectModifiedMsg);
+        UtilityFunctions.validatIsElementPresent(assertProjectModifiedMsg,"assertProjectModifiedMsg Not displayed");
+           UtilityFunctions.waitForElementToDisappear(assertProjectModifiedMsg);
+        Listeners.addLogs("assertProjectPublished validated");
+    }
     public String assertProjectPublishedToastrMsg() {
         UtilityFunctions.waitForVisibilityOfWebElement(assertProjectPublished);
         String actualText=UtilityFunctions.getTextFromElement(assertProjectPublished);
@@ -382,6 +395,18 @@ UtilityFunctions.validatElementNotPresent(createNewBtn);
     public void mangageUserShouldNotDisplay() {
         UtilityFunctions.validatElementNotPresent(manageUserTab);
         Listeners.addLogs("manageUserTab Not displayed");
+
+    }
+    public void updateBtn() {
+
+        UtilityFunctions.waitToBeClickableAndClick(updateBtn);
+        Listeners.addLogs("Clicked updateBtn");
+
+    }
+    public void verifyMyProjectsForSourcingPage() {
+
+        UtilityFunctions.waitToBeClickableAndClick(verifyMyProjectsForSourcingPage);
+        Listeners.addLogs("Clicked verifyMyProjectsForSourcingPage");
 
     }
 }
