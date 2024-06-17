@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 import java.lang.ref.PhantomReference;
 
+import static org.apache.commons.lang3.StringUtils.SPACE;
+
 public class FirstStep4 extends BaseTestConfig {
 
 
@@ -1192,6 +1194,19 @@ TargetCollectionTabInSourcingPageAction.clickSubmitReviewInAddReviewCommentPopup
 @Test(description = "Verify Sourcing org Admin  is able to modify the Project dates.")
 public void SourcingOrgAdminAbleToModifyProjectDatesAndValidateUpdatedInformationAvailableOnAssignedReviewer() throws Exception {
 
+    String fruits = UtilityFunctions.setFutureDate(3);
+    System.out.println(fruits);
+   String getXpath= UtilityFunctions.dataXpath(fruits);
+    System.out.println(getXpath);
+  //  String[] fruitArray = fruits.split(SPACE);
+//    System.out.println(fruitArray[0]);
+//    System.out.println(fruitArray[1]);
+//    System.out.println(fruitArray[2]);
+//    for (int i = 0; i < fruitArray.length; i++)
+//    {
+//        System.out.println(fruitArray[i]);
+//    }
+
     String currentURL = UtilityFunctions.getCurrentURLAsString();
     driver.get(currentURL + cokreat_config.getCoKreatConfigPropertyValue("SourcingURL"));
     LoginPageActions.LoginForJoinCourse(cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_USRNAME"), cokreat_config.getCoKreatConfigPropertyValue("SOURCINGORGADMIN_PASSWORD"));
@@ -1238,6 +1253,11 @@ public void SourcingOrgAdminAbleToModifyProjectDatesAndValidateUpdatedInformatio
     System.out.println(UtilityFunctions.setFutureDate(1));
     System.out.println(UtilityFunctions.getTodayDate("MM/dd/yyyy"));
     System.out.println(UtilityFunctions.getFutureDate(1));
+//    String fruits = UtilityFunctions.setCurrentDate();
+//    String[] fruitArray = fruits.split(SPACE);
+//System.out.println(fruitArray[0]);
+//    System.out.println(fruitArray[1]);
+//    System.out.println(fruitArray[2]);
 
     CreateProjectPageActions.clickUpdateBtn();
 CreateProjectPageActions.assertProjectModifiedToastrMsg();

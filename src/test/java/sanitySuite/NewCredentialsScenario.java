@@ -23,5 +23,4 @@ public class NewCredentialsScenario extends BaseTestConfig {
     }
 
 
-
 }

@@ -19,9 +19,21 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
+import static org.apache.commons.lang3.StringUtils.SPACE;
+
 
 public class UtilityFunctions extends BaseTestConfig {
 
+
+    public static String dataXpath(String a)
+    {
+        String[] fruitArray = a.split(SPACE);
+        String firstXpath="//*[contains(text(),'";
+        String lastXpath="')]";
+        String xpathComma=",";
+        String xpath=firstXpath+fruitArray[1]+" "+fruitArray[0]+xpathComma+" "+fruitArray[2]+lastXpath;
+        return  xpath;
+    }
 
     /* This method will wait untill expected conditions and then it will perform click event on the given webElement */
     public static void waitToBeClickableAndClick(WebElement element) {
