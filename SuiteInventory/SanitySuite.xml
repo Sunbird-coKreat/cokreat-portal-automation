@@ -11,8 +11,7 @@
 
 		<class name="sanitySuite.Suite1" />
 		<class name="sanitySuite.NewCredentialsScenario" />
-<!--
-<class name="sanity.FirstStep4" />-->
+
 	</classes>
 </test> <!-- Test -->
 </suite> <!-- Su ite -->

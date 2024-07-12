@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.List;
 import java.util.Properties;
 
@@ -358,6 +359,11 @@ public class UtilityFunctions extends BaseTestConfig {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeSelected(element));
 
+    }
+    // Method will accepts encoded string as parameter and decode the encoded string and return the decoded string
+    public static String decodeString(String pass) {
+        byte[] decodedBytes = Base64.getDecoder().decode(pass.getBytes());
+        return new String(decodedBytes);
     }
 
     public static void mouseHoverOnElement(WebElement element) {
