@@ -301,7 +301,7 @@ Click on 'Browse' option
   
  * To change the Execution Environment follow the below steps
   
-         * Go to SunbirdConfig.properties 
+         * Go to Cokreate.properties 
          * Enable Environment variable to OCI, Prod, etc.
 
         
